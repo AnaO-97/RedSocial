@@ -4,28 +4,25 @@ module.exports = (database) => {
     database.define("User", {
         id : {
             type : DataTypes.INTEGER,
-            autoIncrement: true,
             primaryKey: true,
+            autoIncrement: true,
         },
         fullName : {
-            type : DataTypes.STRING
+            type : DataTypes.STRING(100)
         },
         age : {
             type : DataTypes.INTEGER
         },
         email : {
-            type : DataTypes.STRING,
+            type : DataTypes.STRING(100),
             unique: true,
             allowNull: false,
         },
         password : {
-            type : DataTypes.STRING
-        },
-        post : {
-            type : DataTypes.STRING
+            type : DataTypes.STRING(100)
         },
         deletedAt : {
             type : DataTypes.DATE
         }
     })
-}
+};
