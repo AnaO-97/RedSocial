@@ -8,10 +8,12 @@ module.exports = (database) => {
             autoIncrement: true,
         },
         fullName : {
-            type : DataTypes.STRING(100)
+            type : DataTypes.STRING(100),
+            allowNull: false,
         },
         age : {
-            type : DataTypes.INTEGER
+            type : DataTypes.INTEGER,
+            allowNull: false,
         },
         email : {
             type : DataTypes.STRING(100),
@@ -19,7 +21,8 @@ module.exports = (database) => {
             allowNull: false,
         },
         password : {
-            type : DataTypes.STRING(100)
+            type : DataTypes.STRING(100),
+            allowNull: false,
         },
         deletedAt : {
             type : DataTypes.DATE
