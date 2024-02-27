@@ -1,3 +1,4 @@
+const validationsPassword = require("../middlewares/validationsPassword");
 const validationsCreate = require("../middlewares/validationsCreate");
 const register = require("./userRegister");
 const login    = require("./userLogin");
@@ -8,7 +9,8 @@ const userHandlers = {
 }
 
 const userMiddle = {
-    validationsCreate
+    validationsCreate,
+    validationsPassword
 }
 
 module.exports = {
