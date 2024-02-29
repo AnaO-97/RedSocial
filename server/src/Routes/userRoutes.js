@@ -11,4 +11,9 @@ userRoutes.post("/register",
     JWTGenerate,
 );
 
+userRoutes.post("/login",
+    userHandlers.login,
+    JWTGenerate,
+)
+
 module.exports = userRoutes;
