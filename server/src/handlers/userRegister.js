@@ -9,7 +9,13 @@ module.exports = async( req, res, next ) => {
 
         if( typeof password === "string" ){
             const newUser = await userCreate({ fullName, age, email, password });
-            req.userData  = { fullName, age, email };
+            
+            req.userData  = { 
+                id       : newUser.id, 
+                email    : newUser.email,
+                age      : newUser.age, 
+                fullName : newUser.fullName, 
+            }
                                
             next();
         }

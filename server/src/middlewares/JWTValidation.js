@@ -12,10 +12,11 @@ module.exports = ( req, res, next ) => {
             JWT_KEYSECRET,
             ( error, userData ) => {
                 if( error ){
+                    console.log("Error JWTValidation: token has expired or is incorrect");
                     res.status(400).json({ error: "Your token has expired or is incorrect" })
                 }
                 else{
-                    console.log("lin16: validationJWT", userData);
+                    console.log("Correct JWTValidation: ", userData.email);
                     next();
                 }
             }

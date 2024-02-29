@@ -11,12 +11,17 @@ function generateJWT ( userData ) {
 }
 
 module.exports = ( req, res ) => {
-    const { userData } = req;
-    const accessToken  = generateJWT( userData );
+    try {        
+        const { userData } = req;
+        const accessToken  = generateJWT( userData );
+    
+        res.header('authorization', accessToken).json({
+            message : "Authenticated user",
+            token   : accessToken,
+            userData,
+        })
 
-    res.header('authorization', accessToken).json({
-        message : "Authenticated user",
-        token   : accessToken,
-        user    : userData,
-    })
+    } catch (error) {
+        res.status(400).json({ JWTGenerateError: error.message })
+    }
 };
