@@ -19,6 +19,4 @@ module.exports = ( req, res ) => {
         token   : accessToken,
         user    : userData,
     })
-
-    console.log(res.header);
 };

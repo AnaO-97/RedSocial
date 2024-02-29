@@ -12,7 +12,6 @@ module.exports = ( req, res, next ) => {
             JWT_KEYSECRET,
             ( error, userData ) => {
                 if( error ){
-                    console.log("error en token")
                     res.status(400).json({ error: "Your token has expired or is incorrect" })
                 }
                 else{
