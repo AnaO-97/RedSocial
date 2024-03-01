@@ -20,7 +20,8 @@ userRoutes.put("/change",
     userHandlers.userChanges,
 )
 
-userRoutes.delete("/delete/:email",
+userRoutes.delete("/deleteUser",
+    userMiddle.JWTValidation,
     userHandlers.userDelete,
 )
 
