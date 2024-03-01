@@ -1,5 +1,4 @@
 const { Router }  = require("express");
-const JWTGenerate = require("../middlewares/JWTGenerate");
 const { userHandlers, userMiddle } = require("../handlers/index");
 
 const userRoutes = Router();
@@ -8,12 +7,21 @@ userRoutes.post("/register",
     userMiddle.validationsCreate, 
     userMiddle.validationsPassword,
     userHandlers.register,
-    JWTGenerate,
+    userMiddle.JWTGenerate,
 );
 
 userRoutes.post("/login",
     userHandlers.login,
-    JWTGenerate,
+    userMiddle.JWTGenerate,
+)
+
+userRoutes.put("/change",
+    userMiddle.JWTValidation,
+    userHandlers.userChanges,
+)
+
+userRoutes.delete("/delete/:email",
+    userHandlers.userDelete,
 )
 
 module.exports = userRoutes;
