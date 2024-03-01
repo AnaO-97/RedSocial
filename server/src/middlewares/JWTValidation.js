@@ -16,7 +16,8 @@ module.exports = ( req, res, next ) => {
                     res.status(400).json({ error: "Your token has expired or is incorrect" })
                 }
                 else{
-                    console.log("Correct JWTValidation: ", userData.email);
+                    console.log("Correct JWTValidation: userData.id", userData.id);                    
+                    req.userData = userData;
                     next();
                 }
             }

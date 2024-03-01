@@ -1,4 +1,4 @@
-const userFind = require("../controllers/userFind");
+const userFind = require("../controllers/userFindOne");
 const bcryptRead = require("../middlewares/bcryptRead");
 
 module.exports = async( req, res, next ) => {
