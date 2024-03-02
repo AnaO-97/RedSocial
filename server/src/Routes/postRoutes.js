@@ -2,17 +2,8 @@ const { Router } = require("express");
 
 const postRoutes = Router();
 
-postRoutes.get("/all", (req, res)=>{
-    const post = [
-        {id: 1,
-        text : "HOLA MUNDO",},
-        {id: 2,
-        text : "ARCOÍRIS",},
-        {id: 3,
-        text : "MUNDO FELIX",}
-    ]
+postRoutes.get("/all")
 
-    res.status(200).json(post);
-})
+postRoutes.get("/allByUser")
 
 module.exports = postRoutes;
