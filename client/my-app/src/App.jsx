@@ -1,22 +1,21 @@
-// import { useEffect } from 'react';
 import './App.css';
-import { Navbar, Home, Register } from "./components/index";
+import { Navbar, Home, Landing } from "./components/index";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 function App() {
   let { pathname } = useLocation();
 
   return (
-    <div >
+    <div className = "App">
       {
-        pathname !== "/register"
+        pathname !== "/landing"
         ? <Navbar/>
         : null
       }
 
       <Routes>
-        <Route exact path = "/register"
-               element    = { <Register/> } 
+        <Route exact path = "/landing"
+               element    = { <Landing/> } 
         > </Route>
 
         <Route exact path = "/home"
