@@ -1,11 +1,11 @@
 function Login ( props ){
-    const { styles, userData, handleChange } = props;
+    const { styles, userData, handleChange, handleSubmit } = props;
 
     return(
         <div className = { styles.subContainer } >
             <h1> LOG IN </h1>
 
-            <form>
+            <form onSubmit = { handleSubmit }>
                 <input name = "email"
                        type = "text"
                        autoFocus
@@ -23,7 +23,7 @@ function Login ( props ){
                        onChange     = { handleChange }
                 />
                 
-                <button class="btn btn-success">
+                <button className = "btn btn-success" type = "submit">
                     LOG IN
                 </button>
             </form>

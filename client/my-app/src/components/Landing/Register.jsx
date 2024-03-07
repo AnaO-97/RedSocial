@@ -1,11 +1,11 @@
 function Register ( props ){
-    const { styles, userData, handleChange } = props;
+    const { styles, userData, handleChange, handleSubmit } = props;
 
     return(
         <div className = { styles.subContainer }>
             <h1> REGISTER </h1>
 
-            <form>
+            <form onSubmit = { handleSubmit }>
                 <input name = "fullName"
                        type = "text"
                        placeholder  = "Full name..."
@@ -39,7 +39,7 @@ function Register ( props ){
                        onChange     = { handleChange }
                 />
 
-                <button class="btn btn-success">
+                <button className = "btn btn-success" type = "submit">
                     REGISTER
                 </button>
             </form>
