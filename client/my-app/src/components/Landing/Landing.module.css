@@ -1,16 +1,24 @@
 .generalContainer{
     width: 50%;
-    margin-top: 5%;
+    background-size:  100% 100%;
+    background-image:  url("https://png.pngtree.com/background/20210714/original/pngtree-there-is-a-time-called-youth-background-pictures-picture-image_1218219.jpg");
+    background-repeat: no-repeat;  
+    border-radius: 10px;
+    border-left: solid 2px black;
+    border-right: solid 2px black;
 }
 
 .generalContainer img{
     width: 15%;
     height: 15%;
+    margin-top: 1%;
+    margin-left: 1%;   
 }
 
 .generalContainer .otherOption{
     position: fixed;
-    right: 25.2%;
+    right: 24.8%;
+    bottom: 30%;
     color: blue;
     font-size: 15px;
     font-weight: bold;
