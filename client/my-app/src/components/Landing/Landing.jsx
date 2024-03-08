@@ -1,7 +1,7 @@
 import styles from "./Landing.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { registerUser } from "../../redux/actions";
+import { registerUser } from "../../redux/actionsUser";
 import { Login, Register } from "../index";
 
 function Landing () {
