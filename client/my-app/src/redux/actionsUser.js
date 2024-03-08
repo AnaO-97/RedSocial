@@ -20,3 +20,21 @@ export function registerUser( userData ) {
         }
     });
 }
+
+export function loginUser( userData ) {
+    return ( async (dispatch) => { 
+        let userLogin = {};
+
+        try {
+            userLogin = await axios.post(`${ REACT_APP_URL_SERVER }/user/login`, userData);
+                       
+            dispatch({
+                type    : ACTION.LOGIN_USER,
+                payload : userLogin.data
+            })
+
+        } catch (error) {
+            window.alert( `${Object.keys(error.response.data)[0]} : ${Object.values(error.response.data)[0]}` );
+        }
+    });
+}

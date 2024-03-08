@@ -1,7 +1,7 @@
 import styles from "./Landing.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { registerUser } from "../../redux/actionsUser";
+import { registerUser, loginUser } from "../../redux/actionsUser";
 import { Login, Register } from "../index";
 
 function Landing () {
@@ -17,10 +17,22 @@ function Landing () {
     });
 
     
-    const handleSubmit = (event) => {
+    const handleSubmitRegister = (event) => {
         event.preventDefault(); 
 
         dispatch(registerUser(userData));
+        // setUserData({
+        //     fullName : "",
+        //     age      : 0,
+        //     email    : "",
+        //     plainPassword: "",            
+        // })
+    }
+
+    const handleSubmitLogin = (event) => {
+        event.preventDefault(); 
+
+        dispatch(loginUser(userData));
         // setUserData({
         //     fullName : "",
         //     age      : 0,
@@ -50,18 +62,20 @@ function Landing () {
                 ? <Login    styles        = { styles } 
                             handleChange  = { handleChange } 
                             userData      = { userData } 
-                            handleSubmit  = { handleSubmit } 
+                            handleSubmit  = { handleSubmitLogin } 
                 />
                 : <Register styles        = { styles } 
                             handleChange  = { handleChange } 
                             userData      = { userData } 
-                            handleSubmit  = { handleSubmit } 
+                            handleSubmit  = { handleSubmitRegister } 
                 />
             }
 
             {
                 typeSession === "login"
-                ?   <button className = { styles.otherOption } name = "register" onClick = { handleSession }>
+                ?   <button className = { styles.otherOption } 
+                            name      = "register" 
+                            onClick   = { handleSession }>
                         REGISTER
                     </button> 
                 :   <button className = { styles.otherOption } name = "login"    onClick = { handleSession }>
