@@ -1,0 +1,59 @@
+form{
+    width: 24.5%;
+    height: 99%;
+    position: fixed;
+    left: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /* border: solid 1px green; */
+}
+
+form .createdAt{
+    border: none;
+    background-color: transparent;
+    margin-left: 65%;
+}
+
+form .title{
+    border: none;
+    border-bottom: solid 2px gray;
+    margin-bottom: -15%;
+}
+
+form .content{
+    border: solid 2px gray;
+}
+
+form .title, .content{
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    /* border: solid 1px pink */
+}
+
+form .submitContainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    /* border: solid 2px green */
+}
+
+form .submitContainer button{
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    background-color: transparent;
+}
+
+form .submitContainer .btnYes:hover{
+    background-color: rgba(25, 102, 25, 0.589);
+}
+
+form .submitContainer .btnNo:hover{
+    background-color: rgba(163, 30, 30, 0.589);
+}

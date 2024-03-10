@@ -5,6 +5,7 @@
   font-family: 'Times New Roman', Times, serif;
   display: flex;
   justify-content: center;
+  /* border: solid 2px yellow */
 }
 
 /* .App {

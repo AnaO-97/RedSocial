@@ -56,7 +56,7 @@ function Landing () {
 
     return(
         <div className = { styles.generalContainer } >
-            <img src = "/logo192.png"/>
+            <img src = { process.env.REACT_APP_IMG_LOGO }/>
             {
                 typeSession === "login"
                 ? <Login    styles        = { styles } 
@@ -78,7 +78,9 @@ function Landing () {
                             onClick   = { handleSession }>
                         REGISTER
                     </button> 
-                :   <button className = { styles.otherOption } name = "login"    onClick = { handleSession }>
+                :   <button className = { styles.otherOption } 
+                            name      = "login"    
+                            onClick   = { handleSession }>
                         LOG IN
                     </button>
             }

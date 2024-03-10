@@ -1,0 +1,57 @@
+.allPostsContainer{
+    width: 100%;
+    height: 78%;
+    overflow-y: scroll;
+    /* border: solid 2px pink */
+}
+
+.allPostsContainer::-webkit-scrollbar {
+    width: 10px;
+}
+
+.allPostsContainer::-webkit-scrollbar-thumb {
+    background-color: yellow;  
+    border-radius: 20px;      
+    border: 2px solid gray;
+}
+
+.allPostsContainer .cardPost{
+    margin: 1%;
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    border: solid 2px gray;
+}
+
+.allPostsContainer .cardPost .headCard, .footerCard{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.allPostsContainer .cardPost .headCard .settings{
+    width: 10%;
+    display: flex;
+    justify-content: space-between;
+    /* border: solid 2px yellow */
+}
+
+.allPostsContainer .cardPost .headCard h3{
+    width: 80%;
+    font-weight: bold;
+    text-align: center;
+    /* border: solid 2px pink */
+}
+
+.allPostsContainer .cardPost .footerCard h6{
+    width: 90%;
+    margin-top: 1%;
+    font-style: italic;    
+    /* border: solid 2px pink */
+}
+
+.allPostsContainer .cardPost button{
+    font-size: 20px;
+    border: none;
+    background-color: transparent;
+}
