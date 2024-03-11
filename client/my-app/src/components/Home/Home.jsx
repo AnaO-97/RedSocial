@@ -5,8 +5,8 @@ import Searchbar  from "../Navbar/Searchbar";
 
 function Home () {
     return(
-        <div className = { styles.generalContainer }>
-            <div className = { styles.subContainer }>
+        <div className = { styles.homeGeneral }>
+            <div className = { styles.homeSubContainer }>
                 <span>
                     My post
                     <img src = { process.env.REACT_APP_IMG_LOGO }/>

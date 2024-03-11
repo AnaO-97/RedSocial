@@ -1,4 +1,4 @@
-form{
+.formCreatePost{
     width: 24.5%;
     height: 99%;
     position: fixed;
@@ -10,37 +10,37 @@ form{
     /* border: solid 1px green; */
 }
 
-form .createdAt{
+.formCreatePost .createdAt{
     border: none;
     background-color: transparent;
     margin-left: 65%;
 }
 
-form .title{
+.formCreatePost .title{
     border: none;
     border-bottom: solid 2px gray;
     margin-bottom: -15%;
 }
 
-form .content{
+.formCreatePost .content{
     border: solid 2px gray;
 }
 
-form .title, .content{
+.formCreatePost .title, .content{
     width: 100%;
     text-align: center;
     font-style: italic;
     /* border: solid 1px pink */
 }
 
-form .submitContainer{
+.formCreatePost .submitContainer{
     width: 100%;
     display: flex;
     justify-content: space-around;
     /* border: solid 2px green */
 }
 
-form .submitContainer button{
+.formCreatePost .submitContainer .btnYes, .btnNo{
     display: flex;
     align-items: center;
     border: none;
@@ -50,10 +50,10 @@ form .submitContainer button{
     background-color: transparent;
 }
 
-form .submitContainer .btnYes:hover{
+.formCreatePost .submitContainer .btnYes:hover{
     background-color: rgba(25, 102, 25, 0.589);
 }
 
-form .submitContainer .btnNo:hover{
+.formCreatePost .submitContainer .btnNo:hover{
     background-color: rgba(163, 30, 30, 0.589);
 }

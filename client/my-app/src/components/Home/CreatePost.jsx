@@ -3,7 +3,7 @@ import AllPost from "./AllPosts";
 
 function CreatePost () {
     return(
-        <form>
+        <form className = { styles.formCreatePost }>
         {/* <form onSubmit = { handleSubmit }> */}
             <input name       = "createdAt"
                     type      = "date"

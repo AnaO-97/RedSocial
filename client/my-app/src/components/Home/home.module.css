@@ -1,4 +1,4 @@
-.generalContainer{
+.homeGeneral{
     width: 96%;
     height: 100%;
     position: fixed;
@@ -7,7 +7,7 @@
     /* border: solid 2px purple */
 }
 
-.generalContainer .subContainer{
+.homeGeneral .homeSubContainer{
     width: 70%;
     height: 100%;
     position: fixed;
@@ -18,7 +18,7 @@
     /* border: solid 2px blue; */
 }
 
-.generalContainer .subContainer span{
+.homeGeneral .homeSubContainer span{
     width: 100%;
     font-weight: bold;
     font-size: 50px;
@@ -27,7 +27,7 @@
     text-shadow: 3px 2px 5px yellow;
 }
 
-.generalContainer .subContainer span img{
+.homeGeneral .homeSubContainer span img{
     position: fixed;
     right: 28%;
     top: 2%;
@@ -35,7 +35,7 @@
     height: 50px;
 }
 
-.generalContainer .postContainer{
+.homeGeneral .postContainer{
     width: 24%;
     height: 99.5%;
     position: fixed;
