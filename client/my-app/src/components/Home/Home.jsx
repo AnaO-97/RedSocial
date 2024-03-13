@@ -1,9 +1,26 @@
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllPosts } from "../../redux/actionsPosts";
 import styles  from "./home.module.css";
 import AllPost from "./AllPosts";
 import CreatePost from "./CreatePost";
 import Searchbar  from "../Navbar/Searchbar";
 
-function Home () {
+function Home ( props ) {
+    const { userData } = props;
+    const dispatch     = useDispatch();
+
+    const token    = useSelector(( state )=> state.JWT_KEY);
+    const allPosts = useSelector(( state )=> state.allPosts);
+
+    const chargeAllPosts = () => {
+        dispatch( getAllPosts( token ) )
+    }
+
+    useEffect(()=>{
+        chargeAllPosts();
+    }, [ ])
+   
     return(
         <div className = { styles.homeGeneral }>
             <div className = { styles.homeSubContainer }>
@@ -13,12 +30,14 @@ function Home () {
                 </span>
 
                 <Searchbar/>
-                
-                <AllPost/>
+
+                <AllPost   allPosts    = { allPosts }
+                           userData    = { userData }
+                />
             </div>
 
             <div className = { styles.postContainer}>
-                <CreatePost/>
+                <CreatePost token = { token } />
             </div>
         </div>
     )

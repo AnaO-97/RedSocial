@@ -1,44 +1,34 @@
 import styles from "./Landing.module.css";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from "react-redux";
 import { registerUser, loginUser } from "../../redux/actionsUser";
 import { Login, Register } from "../index";
 
 function Landing () {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
-    
+
+    const isUser = useSelector(( state )=> state.userData)
+
     const [typeSession, setTypeSession] = useState("login");
-    
-    const [userData, setUserData] = useState({
+    const [userData, setUserData]       = useState({
         fullName : "",
         age      : 0,
-        email    : "",
-        plainPassword: "",
+        email    : "car@gmail.com",
+        plainPassword: "abc123",
     });
-
     
     const handleSubmitRegister = (event) => {
         event.preventDefault(); 
 
         dispatch(registerUser(userData));
-        // setUserData({
-        //     fullName : "",
-        //     age      : 0,
-        //     email    : "",
-        //     plainPassword: "",            
-        // })
     }
 
     const handleSubmitLogin = (event) => {
         event.preventDefault(); 
 
         dispatch(loginUser(userData));
-        // setUserData({
-        //     fullName : "",
-        //     age      : 0,
-        //     email    : "",
-        //     plainPassword: "",            
-        // })
     }
 
     const handleChange  = ( event ) => {
@@ -53,6 +43,18 @@ function Landing () {
     const handleSession = ( event ) => {
         setTypeSession(event.target.name)
     }
+
+    useEffect(()=>{
+        if( isUser.fullName ){
+            setUserData({
+                fullName : "",
+                age      : 0,
+                email    : "",
+                plainPassword: "",            
+            })
+            navigate("/home");
+        }
+    }, [ isUser ])
 
     return(
         <div className = { styles.generalContainer } >

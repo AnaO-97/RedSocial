@@ -50,7 +50,7 @@
     /* border: solid 2px pink */
 }
 
-.allPostsContainer .cardPost button{
+.allPostsContainer .cardPost .bttnCard{
     font-size: 20px;
     border: none;
     background-color: transparent;

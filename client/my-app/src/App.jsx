@@ -1,9 +1,11 @@
 import './App.css';
+import { useSelector } from "react-redux";
 import { Navbar, Home, Landing } from "./components/index";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 function App() {
   let { pathname } = useLocation();
+  const userData   = useSelector(( state )=> state.userData);
 
   return (
     <div className = "App">
@@ -19,7 +21,7 @@ function App() {
         > </Route>
 
         <Route exact path = "/home"
-               element    = { <Home/> } 
+               element    = { <Home  userData = { userData }/> } 
         > </Route>
       </Routes>
     </div>

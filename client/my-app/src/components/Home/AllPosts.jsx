@@ -1,143 +1,59 @@
 import styles from "./allPosts.module.css";
+import { useEffect, useState } from "react";
 
-function AllPost () {
+function AllPost ( props ) {
+    const { allPosts, userData } = props;
+    const [ renderPosts, setRenderPosts ] = useState([]);
+
+    const handleSettingsCard = ( userIdCard ) => {
+        if( userIdCard === userData.id ){
+            return(
+                <>
+                    <button className = { `material-symbols-outlined ${ styles.bttnCard }` }>
+                        delete
+                    </button>
+                    <button className = { `material-symbols-outlined ${ styles.bttnCard }` }>
+                        edit
+                    </button>  
+                </>
+            )
+        }
+    }
+
+    useEffect(()=>{
+        setRenderPosts([ ...allPosts ])
+    }, [ allPosts ])
+
     return(
-        <div className = { styles.allPostsContainer }>
+    <div className = { styles.allPostsContainer }>
+        {
+            renderPosts.map(( post )=>{
+            return(
+            <div key = { post.id }>
             <div className = { styles.cardPost }>
                 <div className = { styles.headCard }>
                     <div className = { styles.settings }>
-                        <button className = "material-symbols-outlined">
-                            delete
-                        </button>
-                        <button className = "material-symbols-outlined">
-                            edit
-                        </button>
+                        { handleSettingsCard( post.UserId )}
                     </div>
-                    <h3> Title post </h3>
-                    <h6> CreateAt: </h6>
+                    <h3> { post.title } </h3>
+                    <h6> { post.createdAt } </h6>
                 </div>
                 
-                <p>  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio unde aspernatur fugit minima? Soluta praesentium eos, quas magnam ipsum repudiandae, illo sint provident odio necessitatibus sunt minus ratione modi! Amet.</p>
+                <p> { post.content } </p>
                 
                 <div className = { styles.footerCard }>
-                    <h6> Author </h6>
-                    <button className = "material-symbols-outlined">
+                    <h6> { post.User.fullName } </h6>
+                    <button className = { `material-symbols-outlined ${ styles.bttnCard }` }>
                         favorite
                     </button>
                 </div>
-
             </div>
-            
+
             <hr />
-
-            <div className = { styles.cardPost }>
-                <div className = { styles.headCard }>
-                    <div className = { styles.settings }>
-                        <button className = "material-symbols-outlined">
-                            delete
-                        </button>
-                        <button className = "material-symbols-outlined">
-                            edit
-                        </button>
-                    </div>
-                    <h3> Title post </h3>
-                    <h6> CreateAt: </h6>
-                </div>
-                
-                <p>  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio unde aspernatur fugit minima? Soluta praesentium eos, quas magnam ipsum repudiandae, illo sint provident odio necessitatibus sunt minus ratione modi! Amet.</p>
-                
-                <div className = { styles.footerCard }>
-                    <h6> Author </h6>                    
-                    <button className = "material-symbols-outlined">
-                        favorite
-                    </button>
-                </div>
-
-            </div>
-            
-            <hr />
-
-            <div className = { styles.cardPost }>
-                <div className = { styles.headCard }>
-                    <div className = { styles.settings }>
-                        <button className = "material-symbols-outlined">
-                            delete
-                        </button>
-                        <button className = "material-symbols-outlined">
-                            edit
-                        </button>
-                    </div>
-                    <h3> Title post </h3>
-                    <h6> CreateAt: </h6>
-                </div>
-                
-                <p>  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio unde aspernatur fugit minima? Soluta praesentium eos, quas magnam ipsum repudiandae, illo sint provident odio necessitatibus sunt minus ratione modi! Amet.</p>
-                
-                <div className = { styles.footerCard }>
-                    <h6> Author </h6>
-                    <button className = "material-symbols-outlined">
-                        favorite
-                    </button>
-                </div>
-
-            </div>
-            
-            <hr />
-
-            <div className = { styles.cardPost }>
-                <div className = { styles.headCard }>
-                    <div className = { styles.settings }>
-                        <button className = "material-symbols-outlined">
-                            delete
-                        </button>
-                        <button className = "material-symbols-outlined">
-                            edit
-                        </button>
-                    </div>
-                    <h3> Title post </h3>
-                    <h6> CreateAt: </h6>
-                </div>
-                
-                <p>  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio unde aspernatur fugit minima? Soluta praesentium eos, quas magnam ipsum repudiandae, illo sint provident odio necessitatibus sunt minus ratione modi! Amet.</p>
-                
-                <div className = { styles.footerCard }>
-                    <h6> Author </h6>
-                    <button className = "material-symbols-outlined">
-                        favorite
-                    </button>
-                </div>
-
-            </div>
-            
-            <hr />
-
-            <div className = { styles.cardPost }>
-                <div className = { styles.headCard }>
-                    <div className = { styles.settings }>
-                        <button className = "material-symbols-outlined">
-                            delete
-                        </button>
-                        <button className = "material-symbols-outlined">
-                            edit
-                        </button>
-                    </div>
-                    <h3> Title post </h3>
-                    <h6> CreateAt: </h6>
-                </div>
-                
-                <p>  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio unde aspernatur fugit minima? Soluta praesentium eos, quas magnam ipsum repudiandae, illo sint provident odio necessitatibus sunt minus ratione modi! Amet.</p>
-                
-                <div className = { styles.footerCard }>
-                    <h6> Author </h6>
-                    <button className = "material-symbols-outlined">
-                        favorite
-                    </button>
-                </div>
-
-            </div>
-            
-            <hr />                                    
-        </div>
+            </div> 
+            );})
+        }
+    </div>
     );
 }
 

@@ -1,14 +1,14 @@
 import { useState } from "react";
 import styles from "./bar.module.css";
 
-function Searchbar () {
+function Searchbar ( props ) {    
     const [ filterBy, setFilterBy ] = useState({
         innerText   : "Author",
         filterQuery : "author",
         filterValue : ""
     });
 
-    const handleClick = ( event ) => {
+    const handleFilterBy = ( event ) => {
         const filter = event.target.attributes.name.value;
         const { innerText } = event.target;
         
@@ -27,35 +27,35 @@ function Searchbar () {
         <div className = { styles.generalSearchbar }>
             <div className = { styles.subContainerA }>
                 <h5>Filter by</h5>
-                <div className="dropdown">
-                    <a className="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <button className="material-symbols-outlined">
+                <div className = "dropdown">
+                    <a className = "dropdown-toggle" data-bs-toggle = "dropdown" aria-expanded = "false">
+                        <button className = "material-symbols-outlined">
                             filter_list
                         </button>
                     </a>
 
-                    <ul className="dropdown-menu">
+                    <ul className = "dropdown-menu">
                         <li className   = "dropdown-item" 
                             name        = "author"
-                            onClick     = {handleClick}
+                            onClick     = {handleFilterBy}
                         >
                             Author
                         </li>
                         <li className   = "dropdown-item" 
                             name        = "title"
-                            onClick     = {handleClick}
+                            onClick     = {handleFilterBy}
                         >
                             Post title
                         </li>
                         <li className   = "dropdown-item" 
                             name        = "createdAt"
-                            onClick     = {handleClick}
+                            onClick     = {handleFilterBy}
                         >
                             Creation date
                         </li>
                         <li className   = "dropdown-item" 
                             name        = "myPosts"
-                            onClick     = {handleClick}
+                            onClick     = {handleFilterBy}
                         >
                             My posts
                         </li>
@@ -65,7 +65,7 @@ function Searchbar () {
                 <h5> { filterBy.innerText } </h5>          
             </div>
             
-            <div className = { styles.subContainerB }>
+            <div className = { styles.subContainerB }>                
                 <input name = "searchInput"
                        type = "text"
                        placeholder  = "Search..."
@@ -74,7 +74,7 @@ function Searchbar () {
                        // value        = { userData.email }
                        // onChange     = { handleChange }
                 />
-                <button className="material-symbols-outlined">
+                <button className = "material-symbols-outlined">
                     search
                 </button>
             </div>
