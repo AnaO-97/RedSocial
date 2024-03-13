@@ -8,7 +8,7 @@ module.exports = async( attributes ) => {
         {
             include: {
                 model     : User,
-                attributes: ['id', 'fullName'],
+                attributes: ['id', 'fullName', 'color'],
             }
         }
     );

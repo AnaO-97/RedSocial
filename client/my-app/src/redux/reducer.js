@@ -19,7 +19,7 @@ function reducer (state = stateInicial, action){
             newState = reducerUser( state, type, payload );
             state    = { ...newState };
            
-            window.alert( "Success : everything was done correctly" );
+            // window.alert( "Success : everything was done correctly" );
             return({ ...state });
         }
         
@@ -27,7 +27,7 @@ function reducer (state = stateInicial, action){
             newState = reducerPost( state, type, payload );
             state    = { ...newState };
 
-            window.alert( "Success : everything was done correctly" );
+            // window.alert( "Success : everything was done correctly" );
             return({ ...state });
         }
     }
