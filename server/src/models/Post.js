@@ -3,9 +3,9 @@ const { DataTypes } = require("sequelize");
 module.exports = ( database ) => {
     database.define("Post", {
         id : {
-            type : DataTypes.INTEGER,
+            type : DataTypes.UUID,
+            defaultValue : DataTypes.UUIDV4,
             primaryKey : true,
-            autoIncrement : true,
         },
         title : {
             type : DataTypes.STRING(100),
@@ -18,6 +18,6 @@ module.exports = ( database ) => {
         },
         deletedAt : {
             type : DataTypes.DATE
-        }
+        }        
     })
 };
