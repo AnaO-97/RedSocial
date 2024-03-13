@@ -4,7 +4,7 @@ module.exports = async() => {
     const allPosts = await Post.findAll({
         include: {
           model     : User,
-          attributes: ['id', 'fullName'], 
+          attributes: ['id', 'fullName', 'color'], 
         },
       });
 

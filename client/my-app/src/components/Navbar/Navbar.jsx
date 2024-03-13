@@ -1,8 +1,12 @@
 import styles from "./bar.module.css";
 
-function Navbar () {
+function Navbar ( props ) {
+    const { userData } = props;
+
     return(
-        <div className = { styles.generalNavbar }>           
+        <div className = { styles.generalNavbar }
+             style     = {{ backgroundColor : `${ userData.color }80` }}
+        >
             <div className = { styles.subNavbar }>
                 <span className = "material-symbols-outlined" title = "Home">
                     home

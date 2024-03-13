@@ -15,8 +15,9 @@ function Landing () {
     const [userData, setUserData]       = useState({
         fullName : "",
         age      : 0,
-        email    : "car@gmail.com",
-        plainPassword: "abc123",
+        email    : "",
+        color    : "#808080",
+        plainPassword: "",
     });
     
     const handleSubmitRegister = (event) => {

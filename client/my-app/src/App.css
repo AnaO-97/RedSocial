@@ -1,4 +1,4 @@
-.App {
+.Landing {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -7,6 +7,25 @@
   justify-content: center;
   /* border: solid 2px yellow */
 }
+
+.App{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(150deg, rgba(255, 0, 98, 0.192) 0%, rgba(0, 0, 255, 0.267) 80%),
+  url("https://img.freepik.com/vector-gratis/jornada-juvenil-elementos_23-2148575115.jpg");   
+  background-size: 100% 100%;
+}
+
+/* .App::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.342);
+} */
 
 /* .App {
   text-align: center;

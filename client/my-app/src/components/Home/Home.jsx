@@ -24,7 +24,7 @@ function Home ( props ) {
     return(
         <div className = { styles.homeGeneral }>
             <div className = { styles.homeSubContainer }>
-                <span>
+                <span style = {{ textShadow : `3px 2px 5px ${ userData.color }` }}>
                     My post
                     <img src = { process.env.REACT_APP_IMG_LOGO }/>
                 </span>
@@ -36,7 +36,9 @@ function Home ( props ) {
                 />
             </div>
 
-            <div className = { styles.postContainer}>
+            <div className = { styles.postContainer}
+                 style     = {{ backgroundColor : `${ userData.color }80` }}
+            >
                 <CreatePost token = { token } />
             </div>
         </div>

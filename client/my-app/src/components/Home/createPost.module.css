@@ -11,6 +11,9 @@
 }
 
 .formCreatePost .createdAt{
+    padding-top: 20%;
+    color: black;
+    font-weight: bold;
     border: none;
     background-color: transparent;
     margin-left: 65%;

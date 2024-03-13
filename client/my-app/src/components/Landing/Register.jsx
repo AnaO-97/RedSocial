@@ -39,6 +39,12 @@ function Register ( props ){
                        onChange     = { handleChange }
                 />
 
+                <input name = "color"
+                       type = "color"
+                       value        = { userData.color || "#808080" }
+                       onChange     = { handleChange }
+                />
+
                 <button className = "btn btn-success" type = "submit">
                     REGISTER
                 </button>

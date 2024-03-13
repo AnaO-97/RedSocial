@@ -24,6 +24,10 @@ module.exports = (database) => {
             type : DataTypes.STRING(100),
             allowNull: false,
         },
+        color : {
+            type : DataTypes.STRING,
+            defaultValue: "#808080",
+        },
         deletedAt : {
             type : DataTypes.DATE
         }

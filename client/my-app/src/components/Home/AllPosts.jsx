@@ -41,7 +41,9 @@ function AllPost ( props ) {
                 
                 <p> { post.content } </p>
                 
-                <div className = { styles.footerCard }>
+                <div className = { styles.footerCard }
+                     style     = {{ backgroundColor : `${ post.User.color }` }}
+                >
                     <h6> { post.User.fullName } </h6>
                     <button className = { `material-symbols-outlined ${ styles.bttnCard }` }>
                         favorite

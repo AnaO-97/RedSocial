@@ -3,19 +3,14 @@ const bcryptCreate = require("../middlewares/bcryptCreate");
 
 module.exports = async( req, res, next ) => {
     try {        
-        const { fullName, age, email, plainPassword } = req.body;
+        const { fullName, age, email, plainPassword, color } = req.body;
 
         const password = await  bcryptCreate( plainPassword );
 
         if( typeof password === "string" ){
-            const newUser = await userCreate({ fullName, age, email, password });
+            const newUser = await userCreate({ fullName, age, email, password, color });
             
-            req.userData  = { 
-                id       : newUser.id, 
-                email    : newUser.email,
-                age      : newUser.age, 
-                fullName : newUser.fullName, 
-            }
+            req.userData  = { ...newUser.dataValues };
                                
             next();
         }

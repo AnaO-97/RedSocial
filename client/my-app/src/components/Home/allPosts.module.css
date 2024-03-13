@@ -27,6 +27,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-radius: 10px;
 }
 
 .allPostsContainer .cardPost .headCard .settings{
@@ -46,7 +47,9 @@
 .allPostsContainer .cardPost .footerCard h6{
     width: 90%;
     margin-top: 1%;
-    font-style: italic;    
+    margin-left: 1%;
+    font-style: italic;
+    font-weight: bold;
     /* border: solid 2px pink */
 }
 

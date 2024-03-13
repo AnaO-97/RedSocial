@@ -11,12 +11,7 @@ module.exports = async( req, res, next ) => {
             const isPassword = await bcryptRead(plainPassword, user.password);                       
 
             if(isPassword === true){
-                req.userData  = { 
-                    id       : user.id, 
-                    email    : user.email,
-                    age      : user.age, 
-                    fullName : user.fullName, 
-                }
+                req.userData  = { ...user.dataValues };
 
                 next();
             }

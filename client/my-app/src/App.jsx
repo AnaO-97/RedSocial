@@ -8,10 +8,10 @@ function App() {
   const userData   = useSelector(( state )=> state.userData);
 
   return (
-    <div className = "App">
+    <div className = { pathname !== "/landing" ? "App" : "Landing" }>
       {
         pathname !== "/landing"
-        ? <Navbar/>
+        ? <Navbar userData = { userData }/>
         : null
       }
 
