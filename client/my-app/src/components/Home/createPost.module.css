@@ -50,10 +50,17 @@
     background-color: transparent;
 }
 
-.formCreatePost .submitContainer .btnYes:hover{
+.formCreatePost .submitContainer .btnYes:hover{ 
     background-color: rgba(25, 102, 25, 0.589);
+    box-shadow: -8px 3px 68px 13px  rgba(25, 102, 25, 0.589);
+    -moz-box-shadow: -8px 3px 68px 13px  rgba(25, 102, 25, 0.589);
+    -webkit-box-shadow: -8px 3px 68px 13px  rgba(25, 102, 25, 0.589);
+
 }
 
 .formCreatePost .submitContainer .btnNo:hover{
-    background-color: rgba(163, 30, 30, 0.589);
+    background-color: rgba(163, 30, 30, 0.589);    
+    box-shadow: -8px 3px 68px 13px rgba(163, 30, 30, 0.589);
+    -moz-box-shadow: -8px 3px 68px 13px rgba(163, 30, 30, 0.589);
+    -webkit-box-shadow: -8px 3px 68px 13px rgba(163, 30, 30, 0.589);
 }

@@ -6,7 +6,7 @@ const { PORT_SERVER } = process.env;
 // force : elimina
 // alter : actualiza
 
-database.sync({ force: true }).then((res)=>{
+database.sync({ alter: true }).then((res)=>{
     app.listen(PORT_SERVER, ()=>{
         console.log(`Server running on port ${ PORT_SERVER } XD`);
     });

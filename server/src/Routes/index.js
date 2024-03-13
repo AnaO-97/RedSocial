@@ -7,6 +7,7 @@ const routes = Router();
 
 routes.use("/user", userRoutes);
 routes.use("/post", JWTValidation, postRoutes);
+// routes.use("/post", postRoutes);
 
 
 module.exports = routes;

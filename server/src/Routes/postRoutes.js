@@ -1,9 +1,12 @@
 const { Router } = require("express");
+const { postHandlers }  = require("../handlers/index");
 
 const postRoutes = Router();
 
-postRoutes.get("/all")
+postRoutes.post("/", postHandlers.postNew);
 
-postRoutes.get("/allByUser")
+postRoutes.get("/all", postHandlers.postsAll);
+
+postRoutes.get("/allByUser");
 
 module.exports = postRoutes;

@@ -1,9 +1,11 @@
 import reducerUser from "./reducerUser";
+import reducerPost from "./reducerPost";
 
 const stateInicial = {
     JWT_KEY : "",
     userData : {},
-    updatedUserData : {}
+    allPosts : [],
+    myFavorites : [],
 };
 
 function reducer (state = stateInicial, action){
@@ -13,19 +15,24 @@ function reducer (state = stateInicial, action){
         let newState = { };
         const [ , ENTITY ] = type.split("_")
 
-        if( ENTITY === "USER" ) {
+        if( ENTITY === "USER" ){
             newState = reducerUser( state, type, payload );
             state    = { ...newState };
            
-            return({ ...state })
+            window.alert( "Success : everything was done correctly" );
+            return({ ...state });
         }
         
-        // if( ENTITY === "POST" )        
-    }
-    else{
-        return({ ...state })
+        if( ENTITY === "POST" ){
+            newState = reducerPost( state, type, payload );
+            state    = { ...newState };
+
+            window.alert( "Success : everything was done correctly" );
+            return({ ...state });
+        }
     }
 
+    return({ ...state })
 }
 
 export default reducer;
