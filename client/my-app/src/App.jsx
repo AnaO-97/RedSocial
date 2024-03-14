@@ -21,7 +21,11 @@ function App() {
         > </Route>
 
         <Route exact path = "/home"
-               element    = { <Home  userData = { userData }/> } 
+               element    = { <Home  userData = { userData } pathname = { pathname }/> } 
+        > </Route>
+
+        <Route exact path = "/home/settings"
+               element    = { <Home  userData = { userData } pathname = { pathname }/> } 
         > </Route>
       </Routes>
     </div>

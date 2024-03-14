@@ -10,18 +10,19 @@
 }
 
 .allPostsContainer::-webkit-scrollbar-thumb {
-    background-color: yellow;  
+    background-color: gray;  
     border-radius: 20px;      
-    border: 2px solid gray;
+    border: 1px solid #3f3e3e;
 }
 
 .allPostsContainer .cardPost{
     margin: 1%;
     padding: 1%;
+    font-weight: bold;
     display: flex;
     flex-direction: column;
     border: solid 2px gray;
-    background-color: rgba(0, 0, 0, 0.384);
+    background-color: rgba(218, 221, 63, 0.658);
 }
 
 .allPostsContainer .cardPost .headCard, .footerCard{
@@ -40,7 +41,7 @@
 }
 
 .allPostsContainer .cardPost .headCard h3{
-    width: 78%;
+    width: 70%;
     font-weight: bold;
     text-align: center;
     /* border: solid 2px pink */

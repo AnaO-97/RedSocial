@@ -8,4 +8,11 @@ export default function reducerUser ( state, type, payload ) {
             userData: payload.userData,
         })
     }
+
+    if ( type === ACTION.MODIFY_USER){
+        return({
+            ...state,
+            userData: payload,
+        })
+    }
 };

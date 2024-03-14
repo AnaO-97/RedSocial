@@ -3,7 +3,7 @@ const userUpdated = require("../controllers/userUpdated");
 module.exports = async ( req, res ) => {
     try {
        const { id }         = req.userData;
-       const editAttributes = req.query;
+       const editAttributes = req.body;
        const userChange     = await userUpdated( editAttributes, id );
        
        if(userChange !== null){

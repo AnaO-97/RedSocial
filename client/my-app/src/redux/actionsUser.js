@@ -16,7 +16,12 @@ export function registerUser( userData ) {
             })
 
         } catch (error) {
-            window.alert( `${Object.keys(error.response.data)[0]} : ${Object.values(error.response.data)[0]}` );
+            if( error.response )
+                window.alert( `${Object.keys(error.response.data)[0]} : ${Object.values(error.response.data)[0]}` );
+            else{
+                console.log(error)
+                window.alert( "Error client : something was wrong" );
+            }
         }
     });
 }
@@ -34,7 +39,45 @@ export function loginUser( userData ) {
             })
 
         } catch (error) {
-            window.alert( `${Object.keys(error.response.data)[0]} : ${Object.values(error.response.data)[0]}` );
+            if( error.response )
+                window.alert( `${Object.keys(error.response.data)[0]} : ${Object.values(error.response.data)[0]}` );
+            else{
+                console.log(error)
+                window.alert( "Error client : something was wrong" );
+            }
+        }
+    });
+}
+
+export function modifyInformationUser( modifyData, token ) {
+    return ( async (dispatch) => { 
+        let userUpdated = {};
+
+        try {
+            userUpdated = await axios.put(
+                `${ REACT_APP_URL_SERVER }/user/change`,
+                modifyData,
+                {                
+                    headers: 
+                    {
+                        // 'Content-Type' : 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    }        
+                }                 
+            );
+                       
+            dispatch({
+                type    : ACTION.MODIFY_USER,
+                payload : userUpdated.data
+            })
+
+        } catch (error) {            
+            if( error.response )
+                window.alert( `${Object.keys(error.response.data)[0]} : ${Object.values(error.response.data)[0]}` );
+            else{
+                console.log(error)
+                window.alert( "Error client : something was wrong" );
+            }
         }
     });
 }

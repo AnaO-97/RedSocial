@@ -1,48 +1,11 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createMyPost }  from "../../redux/actionsPosts";
 import styles  from "./createPost.module.css";
 
 function CreatePost ( props ) {
-    const { token } = props;
-    const dispatch  = useDispatch(); 
-    
-    const [ currentDate, ] = useState(new Date());
-
-    const [ newPost, setNewPost ] = useState({
-        title   : "",
-        content : "",
-    });
-
-    const handleClickNo = ( event ) => {
-        setNewPost({
-            title   : "",
-            content : "",
-        })
-    }
-
-    const handleSubmit =  ( event ) => {
-        event.preventDefault();
-        dispatch(createMyPost( newPost, token ));
-
-        setNewPost({
-            title   : "",
-            content : ""
-        })
-    }
-
-    const handleChange = ( event ) => {
-        const { name, value } = event.target;
-
-        setNewPost({
-            ...newPost,
-            [ name ] : value,
-        })
-    }
+    const { newPost, currentDate, handleClickNo, handleChangeCreatePost, handleSubmitCreatePost } = props;
 
     return(
         <>
-        <form onSubmit  = { handleSubmit }
+        <form onSubmit  = { handleSubmitCreatePost }
               className = { styles.formCreatePost }
         >
             <input name      = "createdAt"
@@ -50,7 +13,6 @@ function CreatePost ( props ) {
                    disabled
                    className = { styles.createdAt }
                    value     = { currentDate.toLocaleString().split(",")[0] }
-                //    onChange  = { handleChange }
             />
             
             <input name         = "title"
@@ -59,7 +21,7 @@ function CreatePost ( props ) {
                    autoComplete = "off"
                    className    = { styles.title }
                    value        = { newPost.title }
-                   onChange     = { handleChange }
+                   onChange     = { handleChangeCreatePost }
             />
             
             <textarea name        = "content" 
@@ -68,7 +30,7 @@ function CreatePost ( props ) {
                       placeholder = "Write something you want to share"
                       className   = { styles.content }
                       value       = { newPost.content }
-                      onChange    = { handleChange }
+                      onChange    = { handleChangeCreatePost }
             />
 
             <div className = { styles.submitContainer }>
@@ -82,7 +44,8 @@ function CreatePost ( props ) {
             </div>            
         </form>
 
-        <button className = { styles.btnNo }
+        <button id        = "createPost"
+                className = { styles.btnNo }
                 onClick   = { handleClickNo }
         >
             <span className = "material-symbols-outlined">

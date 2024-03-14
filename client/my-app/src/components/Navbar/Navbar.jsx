@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { clearRedux }  from "../../redux/actions";
 import styles from "./bar.module.css";
@@ -12,6 +12,10 @@ function Navbar ( props ) {
     const handleOutput = () => {
         dispatch(clearRedux());
         navigate("/landing");
+    }
+
+    const handleSettings = () => {
+        navigate("/home/settings")   
     }
 
     return(
@@ -35,7 +39,9 @@ function Navbar ( props ) {
             </div>
 
             <div className = { styles.subNavbar }>
-                <button className = "material-symbols-outlined" title = "Settings">
+                <button className = "material-symbols-outlined" title = "Settings"                
+                        onClick   = { handleSettings }
+                >
                     settings
                 </button>
 
