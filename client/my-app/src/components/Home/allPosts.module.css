@@ -29,17 +29,18 @@
     align-items: center;
     justify-content: space-between;
     border-radius: 10px;
+    font-weight: bold;
 }
 
 .allPostsContainer .cardPost .headCard .settings{
     width: 10%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between;    
     /* border: solid 2px yellow */
 }
 
 .allPostsContainer .cardPost .headCard h3{
-    width: 80%;
+    width: 78%;
     font-weight: bold;
     text-align: center;
     /* border: solid 2px pink */

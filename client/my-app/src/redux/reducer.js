@@ -30,6 +30,12 @@ function reducer (state = stateInicial, action){
             // window.alert( "Success : everything was done correctly" );
             return({ ...state });
         }
+
+        if( ENTITY === "CLEAR" ){         
+            state    = { ...stateInicial };
+
+            return({ ...state });
+        }
     }
 
     return({ ...state })

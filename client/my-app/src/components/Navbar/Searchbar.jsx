@@ -1,7 +1,9 @@
 import { useState } from "react";
 import styles from "./bar.module.css";
 
-function Searchbar ( props ) {    
+function Searchbar ( props ) {  
+    const { userData } = props;
+    
     const [ filterBy, setFilterBy ] = useState({
         innerText   : "Author",
         filterQuery : "author",
@@ -24,7 +26,9 @@ function Searchbar ( props ) {
     // },[ filterBy.filterQuery ])
 
     return(
-        <div className = { styles.generalSearchbar }>
+        <div className = { styles.generalSearchbar }
+             style     = {{ backgroundColor : `${ userData.color }80` }}
+        >
             <div className = { styles.subContainerA }>
                 <h5>Filter by</h5>
                 <div className = "dropdown">

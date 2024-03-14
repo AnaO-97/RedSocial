@@ -29,7 +29,7 @@ function Home ( props ) {
                     <img src = { process.env.REACT_APP_IMG_LOGO }/>
                 </span>
 
-                <Searchbar/>
+                <Searchbar userData = { userData }/>
 
                 <AllPost   allPosts    = { allPosts }
                            userData    = { userData }

@@ -36,7 +36,7 @@ function AllPost ( props ) {
                         { handleSettingsCard( post.UserId )}
                     </div>
                     <h3> { post.title } </h3>
-                    <h6> { post.createdAt } </h6>
+                    <h6> { post.createdAt.split("T")[0] } </h6>
                 </div>
                 
                 <p> { post.content } </p>

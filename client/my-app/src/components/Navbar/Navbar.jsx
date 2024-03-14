@@ -1,36 +1,49 @@
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from "react-redux";
+import { clearRedux }  from "../../redux/actions";
 import styles from "./bar.module.css";
 
 function Navbar ( props ) {
     const { userData } = props;
+    
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const handleOutput = () => {
+        dispatch(clearRedux());
+        navigate("/landing");
+    }
 
     return(
         <div className = { styles.generalNavbar }
              style     = {{ backgroundColor : `${ userData.color }80` }}
         >
             <div className = { styles.subNavbar }>
-                <span className = "material-symbols-outlined" title = "Home">
+                <button className = "material-symbols-outlined" title = "Home">
                     home
-                </span>            
+                </button>            
             </div>
             
             <div className = { styles.subNavbar }>
-                <span className = "material-symbols-outlined" title = "Favorites">
+                <button className = "material-symbols-outlined" title = "Favorites">
                     favorite
-                </span>
+                </button>
 
-                <span className = "material-symbols-outlined" title = "My Posts">
+                <button className = "material-symbols-outlined" title = "My Posts">
                     data_check
-                </span>
+                </button>
             </div>
 
             <div className = { styles.subNavbar }>
-                <span className = "material-symbols-outlined" title = "Settings">
+                <button className = "material-symbols-outlined" title = "Settings">
                     settings
-                </span>
+                </button>
 
-                <span className = "material-symbols-outlined" title = "Output">
+                <button className = "material-symbols-outlined" title = "Output"
+                        onClick   = { handleOutput }
+                >
                     output
-                </span>
+                </button>
             </div>
         </div>
     )

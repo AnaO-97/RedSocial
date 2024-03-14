@@ -22,7 +22,12 @@
     /* border: solid 2px green */
 }
 
-.generalNavbar .subNavbar span:hover{
+.generalNavbar .subNavbar button{
+    border: none;
+    background-color: transparent;
+}
+
+.generalNavbar .subNavbar button:hover{
     border-radius: 50%;
     cursor: pointer;
     background-color:  rgba(0, 0, 255, 0.199);

@@ -2,18 +2,19 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createMyPost }  from "../../redux/actionsPosts";
 import styles  from "./createPost.module.css";
-import AllPost from "./AllPosts";
 
 function CreatePost ( props ) {
     const { token } = props;
-    const dispatch  = useDispatch();   
+    const dispatch  = useDispatch(); 
+    
+    const [ currentDate, ] = useState(new Date());
 
     const [ newPost, setNewPost ] = useState({
         title   : "",
         content : "",
     });
 
-    const handleClick = ( event ) => {
+    const handleClickNo = ( event ) => {
         setNewPost({
             title   : "",
             content : "",
@@ -40,15 +41,15 @@ function CreatePost ( props ) {
     }
 
     return(
-        // <form className = { styles.formCreatePost }>
+        <>
         <form onSubmit  = { handleSubmit }
               className = { styles.formCreatePost }
         >
-            <input name       = "createdAt"
-                    type      = "date"
-                    disabled
-                    className = { styles.createdAt }
-                //    value     = { userData.email }
+            <input name      = "createdAt"
+                   type      = "text"
+                   disabled
+                   className = { styles.createdAt }
+                   value     = { currentDate.toLocaleString().split(",")[0] }
                 //    onChange  = { handleChange }
             />
             
@@ -71,14 +72,6 @@ function CreatePost ( props ) {
             />
 
             <div className = { styles.submitContainer }>
-                <button className = { styles.btnNo }
-                        onClick   = { handleClick }
-                >
-                    <span className = "material-symbols-outlined">
-                        close
-                    </span>
-                </button>
-
                 <button type      = "submit"
                         className = { styles.btnYes }
                 >
@@ -88,6 +81,15 @@ function CreatePost ( props ) {
                 </button>
             </div>            
         </form>
+
+        <button className = { styles.btnNo }
+                onClick   = { handleClickNo }
+        >
+            <span className = "material-symbols-outlined">
+                close
+            </span>
+        </button>
+        </>
     )
 }
 
