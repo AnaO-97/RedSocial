@@ -33,7 +33,7 @@ function AllPost ( props ) {
             <div className = { styles.cardPost }>
                 <div className = { styles.headCard }>
                     <div className = { styles.settings }
-                         style     = {{ backgroundColor : "rgb(228, 241, 63)", border : "solid 1px gray"}}
+                         style     = {{ backgroundColor : `${ userData.color }80`}}
                     >
                         { handleSettingsCard( post.UserId )}
                     </div>

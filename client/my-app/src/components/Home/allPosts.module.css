@@ -36,7 +36,8 @@
 .allPostsContainer .cardPost .headCard .settings{
     width: 10%;
     display: flex;
-    justify-content: space-between;    
+    justify-content: space-between;   
+    border-radius: 10px; 
     /* border: solid 2px yellow */
 }
 

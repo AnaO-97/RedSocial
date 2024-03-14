@@ -104,13 +104,8 @@ function Home ( props ) {
         navigate("/home");
     }
 
-    
-    const chargeAllPosts = () => {
-        dispatch( getAllPosts( token ) )
-    }
-
     useEffect(()=>{
-        chargeAllPosts();
+        dispatch( getAllPosts( token ) )
     }, [ ])
    
     return(

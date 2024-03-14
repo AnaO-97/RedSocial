@@ -2,12 +2,12 @@ const userUpdated = require("../controllers/userUpdated");
 
 module.exports = async ( req, res ) => {
     try {
-       const { id }         = req.userData;
-       const editAttributes = req.body;
-       const userChange     = await userUpdated( editAttributes, id );
+       const { id }           = req.userData;
+       const editAttributes   = req.body;
+       const updatedPostsUser = await userUpdated( editAttributes, id );
        
-       if(userChange !== null){
-            res.status(200).json(userChange);
+       if(updatedPostsUser !== null){
+            res.status(200).json( updatedPostsUser );
        }
        else{
             res.status(400).json({ error : "user not found" }) 

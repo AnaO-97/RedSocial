@@ -5,7 +5,7 @@ export default function reducerPost ( state, type, payload ) {
         if( state.allPosts.length > 0 ){
             return({
                 ...state,
-                allPosts : [ ...state.allPosts , payload ]
+                allPosts : [ payload, ...state.allPosts ]
             })
         }
         else{

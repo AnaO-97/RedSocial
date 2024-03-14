@@ -10,9 +10,11 @@ export default function reducerUser ( state, type, payload ) {
     }
 
     if ( type === ACTION.MODIFY_USER){
+        const { userChanged, allPosts } = payload;
         return({
             ...state,
-            userData: payload,
+            userData : userChanged,
+            allPosts : [ ... allPosts ]
         })
     }
 };
