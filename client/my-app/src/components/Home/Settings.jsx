@@ -1,7 +1,12 @@
 import styles from "./settings.module.css";
 
 function Settings ( props ) {
-    const { userData, settings, handleChangeSettings, handleSubmitSettings, handleClickNo } = props;
+    const { userData, 
+            settings, 
+            handleClickNo,
+            handleChangeSettings, 
+            handleSubmitSettings,
+    } = props;
 
     return(
         <div>

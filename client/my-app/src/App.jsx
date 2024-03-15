@@ -27,6 +27,10 @@ function App() {
         <Route exact path = "/home/settings"
                element    = { <Home  userData = { userData } pathname = { pathname }/> } 
         > </Route>
+
+        <Route exact path = "/home/modifyPost"
+               element    = { <Home  userData = { userData } pathname = { pathname }/> } 
+        > </Route>
       </Routes>
     </div>
   );

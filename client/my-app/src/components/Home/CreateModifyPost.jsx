@@ -1,11 +1,18 @@
-import styles  from "./createPost.module.css";
+import styles  from "./createModifyPost.module.css";
 
-function CreatePost ( props ) {
-    const { newPost, currentDate, handleClickNo, handleChangeCreatePost, handleSubmitCreatePost } = props;
+function CreateModifyPost ( props ) {
+    const { newPost, 
+            pathname,
+            postModify,
+            currentDate,
+            handleClickNo, 
+            handleChangeCreateModifyPost, 
+            handleSubmitCreateModifyPost 
+    } = props;
 
     return(
         <>
-        <form onSubmit  = { handleSubmitCreatePost }
+        <form onSubmit  = { handleSubmitCreateModifyPost }
               className = { styles.formCreatePost }
         >
             <input name      = "createdAt"
@@ -17,20 +24,23 @@ function CreatePost ( props ) {
             
             <input name         = "title"
                    type         = "text"
-                   placeholder  = "Post title ..."
+                   placeholder  = { pathname === "/home" ? "Post title ..." :  postModify.title }
                    autoComplete = "off"
                    className    = { styles.title }
-                   value        = { newPost.title }
-                   onChange     = { handleChangeCreatePost }
+                   value        = { pathname === "/home" ? newPost.title :  postModify.title }
+                   onChange     = { handleChangeCreateModifyPost }
+                   //    value        = { newPost.title }
             />
             
             <textarea name        = "content" 
                       rows        = "10" 
                       cols        = "45"
-                      placeholder = "Write something you want to share"
+                      placeholder = { pathname === "/home" ? "Write something you want to share" :  postModify.content }
                       className   = { styles.content }
-                      value       = { newPost.content }
-                      onChange    = { handleChangeCreatePost }
+                      value       = { pathname === "/home" ? newPost.content :  postModify.content }
+                      onChange    = { handleChangeCreateModifyPost }
+                      //   value       = { newPost.content }
+                    //   onChange    = { handleChangeCreatePost }
             />
 
             <div className = { styles.submitContainer }>
@@ -44,7 +54,7 @@ function CreatePost ( props ) {
             </div>            
         </form>
 
-        <button id        = "createPost"
+        <button id        = "createModifyPost"
                 className = { styles.btnNo }
                 onClick   = { handleClickNo }
         >
@@ -56,4 +66,4 @@ function CreatePost ( props ) {
     )
 }
 
-export default CreatePost;
+export default CreateModifyPost;

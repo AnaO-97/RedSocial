@@ -2,17 +2,29 @@ import styles from "./allPosts.module.css";
 import { useEffect, useState } from "react";
 
 function AllPost ( props ) {
-    const { allPosts, userData } = props;
+    const { allPosts, 
+            userData,
+            handleDeletePost,
+            handleModifyPost,
+    } = props;
+    
     const [ renderPosts, setRenderPosts ] = useState([]);
 
-    const handleSettingsCard = ( userIdCard ) => {
+    const handleSettingsCard = ( userIdCard, postId ) => {
         if( userIdCard === userData.id ){
             return(
                 <>
-                    <button className = { `material-symbols-outlined ${ styles.bttnCard }` }>
+                    <button id        = { postId }
+                            className = { `material-symbols-outlined ${ styles.bttnCard }` }
+                            onClick   = { handleDeletePost }
+                    >
                         delete
-                    </button>
-                    <button className = { `material-symbols-outlined ${ styles.bttnCard }` }>
+                    </button>                    
+
+                    <button id        = { postId }
+                            className = { `material-symbols-outlined ${ styles.bttnCard }` }
+                            onClick   = { handleModifyPost }
+                    >
                         edit
                     </button>  
                 </>
@@ -35,7 +47,7 @@ function AllPost ( props ) {
                     <div className = { styles.settings }
                          style     = {{ backgroundColor : `${ userData.color }80`}}
                     >
-                        { handleSettingsCard( post.UserId )}
+                        { handleSettingsCard( post.UserId, post.id )}
                     </div>
                     <h3> { post.title } </h3>
                     <h6> { post.createdAt.split("T")[0] } </h6>

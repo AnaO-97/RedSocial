@@ -30,7 +30,7 @@ export function createMyPost( postData, token ) {
                 window.alert( `${Object.keys(error.response.data)[0]} : ${Object.values(error.response.data)[0]}` );
             else{
                 console.log(error)
-                window.alert( "Error client : something was wrong" );
+                window.alert( "Error createMyPost : something was wrong" );
             }
         }
     });
@@ -58,7 +58,64 @@ export function getAllPosts( token ) {
                 window.alert( `${Object.keys(error.response.data)[0]} : ${Object.values(error.response.data)[0]}` );
             else{
                 console.log(error)
-                window.alert( "Error client : something was wrong" );
+                window.alert( "Error getAllPosts : something was wrong" );
+            }
+        }
+    });
+}
+
+export function updatePost( token, postModify) {
+    return ( async (dispatch) => { 
+        let postUpdated = {};
+
+        try {
+            postUpdated = await axios.put(
+                `${ REACT_APP_URL_SERVER }/post/${ postModify.id }`,
+                postModify,
+                {                
+                    headers: { 'Authorization': `Bearer ${token}` }
+                }        
+            );                     
+                       
+            dispatch({
+                type    : ACTION.MODIFY_POST,
+                payload : postUpdated.data
+            })
+
+        } catch (error) {
+            if( error.response )
+                window.alert( `${Object.keys(error.response.data)[0]} : ${Object.values(error.response.data)[0]}` );
+            else{
+                console.log(error)
+                window.alert( "Error updateMyPost : something was wrong" );
+            }
+        }
+    });
+}
+
+export function deletePost( token, idPost ) {
+    return ( async (dispatch) => { 
+        let postDeleted = {};
+
+        try {
+            postDeleted = await axios.delete(
+                `${ REACT_APP_URL_SERVER }/post/${ idPost }`,                
+                {                
+                    headers: { 'Authorization': `Bearer ${token}` }
+                }        
+            );                     
+                       
+            dispatch({
+                type    : ACTION.DELETE_POST,
+                payload : postDeleted.data
+            })
+
+        } catch (error) {
+            if( error.response )
+                window.alert( `${Object.keys(error.response.data)[0]} : ${Object.values(error.response.data)[0]}` );
+            else{
+                console.log(error)
+                window.alert( "Error deletePost : something was wrong" );
             }
         }
     });

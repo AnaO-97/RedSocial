@@ -20,7 +20,7 @@ export function registerUser( userData ) {
                 window.alert( `${Object.keys(error.response.data)[0]} : ${Object.values(error.response.data)[0]}` );
             else{
                 console.log(error)
-                window.alert( "Error client : something was wrong" );
+                window.alert( "Error registerUser : something was wrong" );
             }
         }
     });
@@ -43,7 +43,7 @@ export function loginUser( userData ) {
                 window.alert( `${Object.keys(error.response.data)[0]} : ${Object.values(error.response.data)[0]}` );
             else{
                 console.log(error)
-                window.alert( "Error client : something was wrong" );
+                window.alert( "Error loginUser : something was wrong" );
             }
         }
     });
@@ -76,7 +76,7 @@ export function modifyInformationUser( modifyData, token ) {
                 window.alert( `${Object.keys(error.response.data)[0]} : ${Object.values(error.response.data)[0]}` );
             else{
                 console.log(error)
-                window.alert( "Error client : something was wrong" );
+                window.alert( "Error modifyInformationUser : something was wrong" );
             }
         }
     });

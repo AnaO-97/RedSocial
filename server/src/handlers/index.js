@@ -7,8 +7,10 @@ const login        = require("./userLogin");
 const userDelete   = require("./userDelete");
 const userChanges  = require("./userChanges");
 
-const postNew = require("./postNew");
-const postsAll = require("./postsAll");
+const postNew    = require("./postNew");
+const postsAll   = require("./postsAll");
+const postDelete = require("./postDelete");
+const postChange = require("./postChange");
 
 const userHandlers = {
     login,
@@ -27,6 +29,8 @@ const userMiddle = {
 const postHandlers = {
     postNew,
     postsAll,
+    postDelete,
+    postChange,
 };
 
 module.exports = {

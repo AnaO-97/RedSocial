@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch }  from "react-redux";
-import { getAllPosts, createMyPost } from "../../redux/actionsPosts";
+import { getAllPosts, createMyPost, updatePost, deletePost } from "../../redux/actionsPosts";
 import { modifyInformationUser } from "../../redux/actionsUser";
 import styles  from "./home.module.css";
 import AllPost from "./AllPosts";
-import CreatePost from "./CreatePost";
+import CreateModifyPost from "./CreateModifyPost";
 import Settings from "./Settings";
 import Searchbar  from "../Navbar/Searchbar";
 
@@ -18,23 +18,52 @@ function Home ( props ) {
     const allPosts = useSelector(( state )=> state.allPosts);
     
     const [ currentDate, ]          = useState(new Date());
+    
     const [ settings, setSettings ] = useState({
         color    : undefined,
         fullName : undefined,
         age      : undefined,
         email    : undefined,
         password : undefined,
-    })   
+    });
 
     const [ newPost, setNewPost ] = useState({
         title   : "",
         content : "",
     });
 
-    const handleClickNo = ( event ) => {
+    const [ postModify, setPostModify ] = useState({ 
+        id      : "" ,
+        title   : undefined,
+        content : undefined,
+        likes   : undefined,
+    })
+
+    const iconChangingSection = () => {
+        if( pathname === "/home" )
+            return "post_add"
+        if( pathname === "/home/settings" )
+            return "settings"
+        if( pathname === "/home/modifyPost" )
+            return "edit"
+    }
+
+    const titleChangingSection = () => {
+        if( pathname === "/home" )
+            return "New Post"
+        if( pathname === "/home/settings" )
+            return "Settings"
+        if( pathname === "/home/modifyPost" )
+            return "Edit Post"
+    }
+
+    const handleClickNo = ( event ) => {       
         const { id } = event.target.parentElement;
 
-        if( id === "createPost" ){            
+        if( id === "createModifyPost" ){ 
+            if( pathname === "/home/modifyPost" )
+                navigate("/home");
+
             setNewPost({
                 title   : "",
                 content : "",
@@ -62,23 +91,55 @@ function Home ( props ) {
         })
     }
 
-    const handleChangeCreatePost = ( event ) => {
+    const handleChangeCreateModifyPost = ( event ) => {
         const { name, value } = event.target;
 
-        setNewPost({
-            ...newPost,
-            [ name ] : value,
-        })
+        if( pathname === "/home" ){
+            setNewPost({
+                ...newPost,
+                [ name ] : value,
+            })     
+        }
+        
+        if( pathname === "/home/modifyPost" ){
+            setPostModify({
+                ...postModify,
+                [ name ] : value,
+            }) 
+        }
     }
 
-    const handleSubmitCreatePost =  ( event ) => {
+    const handleSubmitCreateModifyPost =  ( event ) => {
         event.preventDefault();
-        dispatch(createMyPost( newPost, token ));
+        
+        if( pathname === "/home" ){
+            dispatch( createMyPost( newPost, token ) );
 
-        setNewPost({
-            title   : "",
-            content : ""
-        })
+            setNewPost({
+                title   : "",
+                content : ""
+            })
+        }
+        
+        if( pathname === "/home/modifyPost" ){
+            let modifyClean = {};
+
+            for (const attribute in postModify) {
+                if( postModify[ attribute ] !== undefined )
+                    modifyClean[ attribute ] = postModify[ attribute ]
+            }
+
+            dispatch( updatePost( token, modifyClean ) );
+
+            setPostModify({
+                id      : "" ,
+                title   : undefined,
+                content : undefined,
+                likes   : undefined,
+            })
+
+            navigate("/home");
+        }
     }
 
     const handleSubmitSettings = ( event ) => {
@@ -91,6 +152,8 @@ function Home ( props ) {
                 settingsClean[ attribute ] = settings[ attribute ]
         }
 
+        dispatch( modifyInformationUser( settingsClean, token ) )
+
         setSettings({
             color    : undefined,
             fullName : undefined,
@@ -99,14 +162,37 @@ function Home ( props ) {
             password : undefined,
         })
 
-        dispatch(modifyInformationUser(settingsClean, token))
-
         navigate("/home");
+    }
+
+    const handleDeletePost = ( event ) => {
+        const { id } = event.target;
+
+        dispatch( deletePost( token, id ) );
+        
+        navigate("/home");
+    }
+
+    const handleModifyPost = ( event ) => {
+        const { id } = event.target;
+        const [ postModify ] = allPosts.filter((post)=>post.id===id);
+
+        navigate("/home/modifyPost");
+
+        setPostModify({ 
+            id      : postModify.id,
+            title   : postModify.title,
+            content : postModify.content,
+        })
     }
 
     useEffect(()=>{
         dispatch( getAllPosts( token ) )
     }, [ ])
+
+    // useEffect(()=>{
+    //     console.log(postModify)
+    // }, [ postModify ])
    
     return(
         <div className = { styles.homeGeneral }>
@@ -120,6 +206,8 @@ function Home ( props ) {
 
                 <AllPost   allPosts    = { allPosts }
                            userData    = { userData }
+                           handleModifyPost = { handleModifyPost }
+                           handleDeletePost = { handleDeletePost }
                 />
             </div>
 
@@ -128,10 +216,10 @@ function Home ( props ) {
             >
                 <div className = { styles.headerContainer }>
                     <span className = "material-symbols-outlined">
-                        { pathname === "/home/settings" ? "settings" : "post_add" }
+                        { iconChangingSection() }
                     </span>
                     <span style = {{ textShadow : `3px 2px 5px ${ userData.color }` }}> 
-                    { pathname === "/home/settings" ? "Settings" : "New Post" } 
+                        { titleChangingSection() } 
                     </span>
                 </div>
                 {
@@ -143,11 +231,13 @@ function Home ( props ) {
                                 handleSubmitSettings = { handleSubmitSettings }
     
                     />
-                    : <CreatePost newPost     = { newPost }
-                                  currentDate = { currentDate }
-                                  handleClickNo          = { handleClickNo }
-                                  handleChangeCreatePost = { handleChangeCreatePost }
-                                  handleSubmitCreatePost = { handleSubmitCreatePost }
+                    : <CreateModifyPost newPost     = { newPost }
+                                        pathname    = { pathname }
+                                        currentDate = { currentDate }
+                                        postModify  = { postModify }
+                                        handleClickNo          = { handleClickNo }
+                                        handleChangeCreateModifyPost = { handleChangeCreateModifyPost }
+                                        handleSubmitCreateModifyPost = { handleSubmitCreateModifyPost }
                     />
                 }
                 <h6 style = {{ backgroundColor : `${ userData.color }` }}> 
