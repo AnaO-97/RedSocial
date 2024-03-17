@@ -7,27 +7,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-end;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     border-right: solid 1px grey;
 }
 
-.generalNavbar .subNavbar{
-    height: 20%;
-    margin: 10%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;    
-    /* border: solid 2px green */
-}
-
-.generalNavbar .subNavbar button{
+.generalNavbar button{
+    margin-bottom: 100%;
+    margin-top: 200%;
     border: none;
     background-color: transparent;
 }
 
-.generalNavbar .subNavbar button:hover{
+.generalNavbar button:hover{
     border-radius: 50%;
     cursor: pointer;
     background-color:  rgba(0, 0, 255, 0.199);

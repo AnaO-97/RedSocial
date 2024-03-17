@@ -15,42 +15,34 @@ function Navbar ( props ) {
     }
 
     const handleSettings = () => {
-        navigate("/home/settings")   
+        navigate("/home/settings");
+    }
+
+    const handleCreatePost = () => {
+        navigate("/home");
     }
 
     return(
         <div className = { styles.generalNavbar }
              style     = {{ backgroundColor : `${ userData.color }80` }}
         >
-            <div className = { styles.subNavbar }>
-                <button className = "material-symbols-outlined" title = "Home">
-                    home
-                </button>            
-            </div>
-            
-            <div className = { styles.subNavbar }>
-                <button className = "material-symbols-outlined" title = "Favorites">
-                    favorite
-                </button>
+            <button className = "material-symbols-outlined" title = "Create Post"
+                    onClick   = { handleCreatePost }
+            >
+                post_add
+            </button>  
 
-                <button className = "material-symbols-outlined" title = "My Posts">
-                    data_check
-                </button>
-            </div>
+            <button className = "material-symbols-outlined" title = "Settings"
+                    onClick   = { handleSettings }
+            >
+                settings
+            </button>
 
-            <div className = { styles.subNavbar }>
-                <button className = "material-symbols-outlined" title = "Settings"                
-                        onClick   = { handleSettings }
-                >
-                    settings
-                </button>
-
-                <button className = "material-symbols-outlined" title = "Output"
-                        onClick   = { handleOutput }
-                >
-                    output
-                </button>
-            </div>
+            <button className = "material-symbols-outlined" title = "Output"
+                    onClick   = { handleOutput }
+            >
+                output
+            </button>
         </div>
     )
 }

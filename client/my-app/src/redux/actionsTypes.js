@@ -4,6 +4,7 @@ export const MODIFY_USER= "MODIFY_USER";
 
 export const NEW_POST    = "NEW_POST";
 export const ALL_POST    = "ALL_POST";
+export const FILTER_POST = "FILTER_POST";
 export const MODIFY_POST = "MODIFY_POST";
 export const DELETE_POST = "DELETE_POST";
 

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch }  from "react-redux";
-import { getAllPosts, createMyPost, updatePost, deletePost } from "../../redux/actionsPosts";
+import { getAllPosts, createMyPost, updatePost, deletePost, filterPosts } from "../../redux/actionsPosts";
 import { modifyInformationUser } from "../../redux/actionsUser";
 import styles  from "./home.module.css";
 import AllPost from "./AllPosts";
@@ -12,10 +12,11 @@ import Searchbar  from "../Navbar/Searchbar";
 function Home ( props ) {
     const { userData, pathname } = props;
     
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const token    = useSelector(( state )=> state.JWT_KEY);
-    const allPosts = useSelector(( state )=> state.allPosts);
+    const navigate  = useNavigate();
+    const dispatch  = useDispatch();    
+    const token     = useSelector(( state )=> state.JWT_KEY);
+    const filterObj = useSelector(( state )=> state.filterPosts);
+    const dataPosts = useSelector(( state )=> state.filterPosts.data);
     
     const [ currentDate, ]          = useState(new Date());
     
@@ -40,7 +41,7 @@ function Home ( props ) {
     })
 
     const iconChangingSection = () => {
-        if( pathname === "/home" )
+        if( pathname === "/home")
             return "post_add"
         if( pathname === "/home/settings" )
             return "settings"
@@ -49,7 +50,7 @@ function Home ( props ) {
     }
 
     const titleChangingSection = () => {
-        if( pathname === "/home" )
+        if( pathname === "/home")
             return "New Post"
         if( pathname === "/home/settings" )
             return "Settings"
@@ -169,13 +170,11 @@ function Home ( props ) {
         const { id } = event.target;
 
         dispatch( deletePost( token, id ) );
-        
-        navigate("/home");
     }
 
     const handleModifyPost = ( event ) => {
         const { id } = event.target;
-        const [ postModify ] = allPosts.filter((post)=>post.id===id);
+        const [ postModify ] = dataPosts.filter((post)=>post.id===id);
 
         navigate("/home/modifyPost");
 
@@ -188,6 +187,10 @@ function Home ( props ) {
 
     useEffect(()=>{
         dispatch( getAllPosts( token ) )
+        // dispatch( filterPosts({
+        //     filterQuery : filterObj.type, 
+        //     filterValue : filterObj.value,
+        // }))
     }, [ ])
 
     // useEffect(()=>{
@@ -204,7 +207,7 @@ function Home ( props ) {
 
                 <Searchbar userData = { userData }/>
 
-                <AllPost   allPosts    = { allPosts }
+                <AllPost   allPosts    = { dataPosts }
                            userData    = { userData }
                            handleModifyPost = { handleModifyPost }
                            handleDeletePost = { handleDeletePost }

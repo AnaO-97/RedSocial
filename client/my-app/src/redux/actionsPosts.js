@@ -22,7 +22,7 @@ export function createMyPost( postData, token ) {
                        
             dispatch({
                 type    : ACTION.NEW_POST,
-                payload : newPost.data
+                payload : newPost.data,
             })
 
         } catch (error) {
@@ -61,6 +61,13 @@ export function getAllPosts( token ) {
                 window.alert( "Error getAllPosts : something was wrong" );
             }
         }
+    });
+}
+
+export function filterPosts( filterObj ) {
+    return ({
+        type    : ACTION.FILTER_POST,
+        payload : filterObj
     });
 }
 

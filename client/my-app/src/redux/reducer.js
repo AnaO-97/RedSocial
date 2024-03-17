@@ -5,6 +5,11 @@ const stateInicial = {
     JWT_KEY : "",
     userData : {},
     allPosts : [],
+    filterPosts : {
+        type : "",
+        value: "",
+        data : [],
+    },
     myFavorites : [],
 };
 

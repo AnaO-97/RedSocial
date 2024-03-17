@@ -1,14 +1,26 @@
-import { useState } from "react";
+import { filterPosts } from '../../redux/actionsPosts';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
 import styles from "./bar.module.css";
 
 function Searchbar ( props ) {  
     const { userData } = props;
     
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    
     const [ filterBy, setFilterBy ] = useState({
-        innerText   : "Author",
-        filterQuery : "author",
+        innerText   : "All posts",
+        filterQuery : "allPosts",
         filterValue : ""
     });
+
+    const handleSubmitSearch = () => {
+        dispatch( filterPosts( filterBy ) );
+        // console.log(filterBy)
+        // navigate("/home/filterPosts");
+    }
 
     const handleFilterBy = ( event ) => {
         const filter = event.target.attributes.name.value;
@@ -20,10 +32,6 @@ function Searchbar ( props ) {
             filterQuery : filter,
         });
     }
-
-    // useEffect(()=>{
-    //     console.log("query", filterBy.filterQuery)
-    // },[ filterBy.filterQuery ])
 
     return(
         <div className = { styles.generalSearchbar }
@@ -39,6 +47,12 @@ function Searchbar ( props ) {
                     </a>
 
                     <ul className = "dropdown-menu">
+                        <li className   = "dropdown-item" 
+                            name        = "allPosts"
+                            onClick     = {handleFilterBy}
+                        >
+                            All posts
+                        </li>
                         <li className   = "dropdown-item" 
                             name        = "author"
                             onClick     = {handleFilterBy}
@@ -57,11 +71,19 @@ function Searchbar ( props ) {
                         >
                             Creation date
                         </li>
-                        <li className   = "dropdown-item" 
-                            name        = "myPosts"
-                            onClick     = {handleFilterBy}
+                        <li className = "dropdown-item" 
+                            name      = "myPosts"
+                            onClick   = {handleFilterBy}
+                            style     = {{ fontWeight : "bold" }}
                         >
                             My posts
+                        </li>
+                        <li className = "dropdown-item" 
+                            name      = "myFavorites"
+                            onClick   = {handleFilterBy}
+                            style     = {{ fontWeight : "bold" }}
+                        >                            
+                            My favorites
                         </li>
                     </ul>
                 </div>
@@ -78,7 +100,9 @@ function Searchbar ( props ) {
                        // value        = { userData.email }
                        // onChange     = { handleChange }
                 />
-                <button className = "material-symbols-outlined">
+                <button className = "material-symbols-outlined"
+                        onClick   = { handleSubmitSearch }
+                >
                     search
                 </button>
             </div>
