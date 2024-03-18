@@ -73,10 +73,10 @@ export function filterPosts( filterObj ) {
 
 export function updatePost( token, postModify) {
     return ( async (dispatch) => { 
-        let postUpdated = {};
+        let objPostUpdated = {};
 
         try {
-            postUpdated = await axios.put(
+            objPostUpdated = await axios.put(
                 `${ REACT_APP_URL_SERVER }/post/${ postModify.id }`,
                 postModify,
                 {                
@@ -86,7 +86,7 @@ export function updatePost( token, postModify) {
                        
             dispatch({
                 type    : ACTION.MODIFY_POST,
-                payload : postUpdated.data
+                payload : objPostUpdated.data
             })
 
         } catch (error) {

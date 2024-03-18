@@ -14,6 +14,16 @@ export default function reducerPost ( state, type, payload ) {
                 })
             }
         }
+        else{
+            return({
+                ...state,
+                allPosts    : [ payload ],
+                filterPosts : {
+                    ...state.filterPosts,
+                    data : [ payload ]
+                },
+            })
+        }
     }
 
     if ( type === ACTION.ALL_POST ){
@@ -43,7 +53,7 @@ export default function reducerPost ( state, type, payload ) {
         }
 
         if( filterQuery === "author" ){
-            auxiliary = state.allPosts.filter(( post ) => post.User.fullName === filterValue)
+            auxiliary = state.allPosts.filter(( post ) => post.User.fullName.toLowerCase().includes( filterValue.toLowerCase() ));
 
             return({
                 ...state,
@@ -55,8 +65,21 @@ export default function reducerPost ( state, type, payload ) {
             })
         }
 
-        if( filterQuery === "title" ||filterQuery === "createdAt" ){
-            auxiliary = state.allPosts.filter(( post ) => post[ filterQuery ] === filterValue)
+        if( filterQuery === "title" ){
+            auxiliary = state.allPosts.filter(( post ) => post.title.toLowerCase().includes( filterValue.toLowerCase() ));
+
+            return({
+                ...state,
+                filterPosts : {
+                    type : filterQuery,
+                    value: filterValue,
+                    data : [ ...auxiliary ]
+                }
+            })
+        }
+
+        if( filterQuery === "createdAt" ){
+            auxiliary = state.allPosts.filter(( post ) => post.createdAt.includes( filterValue ))
 
             return({
                 ...state,
@@ -83,11 +106,13 @@ export default function reducerPost ( state, type, payload ) {
     }
 
     if ( type === ACTION.MODIFY_POST ){
-        let postUpdated = state.filterPosts.data.filter(( post )=> post.id === payload.id );
-        let withoutPostUpdated = state.filterPosts.data.filter(( post )=> post.id !== payload.id );
-        let withoutPostUpdatedAll = state.allPosts.filter(( post )=> post.id !== payload.id );
+        const { idBefore, postAfter } = payload;
+
+        let postUpdated = state.filterPosts.data.filter(( post )=> post.id === idBefore );
+        let withoutPostUpdated = state.filterPosts.data.filter(( post )=> post.id !== idBefore );
+        let withoutPostUpdatedAll = state.allPosts.filter(( post )=> post.id !== idBefore );
         
-        postUpdated = { ...payload };
+        postUpdated = { ...postAfter };
         
         return({
             ...state,

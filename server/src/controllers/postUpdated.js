@@ -1,17 +1,28 @@
 const { Post, User } = require("../db");
 
-module.exports = async ( attributes, id ) => {        
+module.exports = async ( attributes, id ) => {  
     const postChange = await Post.findByPk(id);
+    let   attributesChanged   = {};
+    let   postChangedComplete = {};
 
     if(postChange){
         for (const att in attributes){               
             postChange[ att ] = attributes[ att ];
         }
+                
+        await postChange.save();  
         
-        await postChange.save();
+        attributesChanged = {
+            UserId    : postChange.UserId,
+            likes     : postChange.likes, 
+            title     : postChange.title, 
+            content   : postChange.content, 
+            deletedAt : postChange.deletedAt,
+        }       
 
-        const postChangedComplete = await Post.findByPk(
-            id, 
+        postChangedComplete = await Post.create( attributesChanged );        
+        postChangedComplete = await Post.findByPk(
+            postChangedComplete.id,
             {
                 include: {
                     model     : User,
@@ -20,7 +31,12 @@ module.exports = async ( attributes, id ) => {
             }
         );
 
-        return postChangedComplete;
+        await postChange.destroy();
+
+        return {
+            idBefore  : id,
+            postAfter : postChangedComplete
+        };
     }
     else{
         return null;

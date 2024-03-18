@@ -6,7 +6,7 @@ const stateInicial = {
     userData : {},
     allPosts : [],
     filterPosts : {
-        type : "",
+        type : "allPosts",
         value: "",
         data : [],
     },

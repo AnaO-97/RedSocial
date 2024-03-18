@@ -1,13 +1,11 @@
-import { filterPosts } from '../../redux/actionsPosts';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import { filterPosts } from '../../redux/actionsPosts';
 import styles from "./bar.module.css";
 
 function Searchbar ( props ) {  
     const { userData } = props;
-    
-    const navigate = useNavigate();
+
     const dispatch = useDispatch();
     
     const [ filterBy, setFilterBy ] = useState({
@@ -18,12 +16,25 @@ function Searchbar ( props ) {
 
     const handleSubmitSearch = () => {
         dispatch( filterPosts( filterBy ) );
-        // console.log(filterBy)
-        // navigate("/home/filterPosts");
+        
+        setFilterBy({
+            ...filterBy,
+            filterValue : "",
+        })
+    }
+
+    const handleChangeFilterValue = ( event ) => {
+        const { value } = event.target;
+        
+        setFilterBy({
+            ...filterBy,
+            filterValue : value
+        })
     }
 
     const handleFilterBy = ( event ) => {
-        const filter = event.target.attributes.name.value;
+        const filter = event.target.attributes.name.value;        
+        
         const { innerText } = event.target;
         
         setFilterBy({
@@ -97,8 +108,8 @@ function Searchbar ( props ) {
                        placeholder  = "Search..."
                        autoComplete = "off"
                        className    = { styles.searchInput }
-                       // value        = { userData.email }
-                       // onChange     = { handleChange }
+                       value        = { filterBy.filterValue }
+                       onChange     = { handleChangeFilterValue }
                 />
                 <button className = "material-symbols-outlined"
                         onClick   = { handleSubmitSearch }
