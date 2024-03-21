@@ -12,6 +12,9 @@ const postsAll   = require("./postsAll");
 const postDelete = require("./postDelete");
 const postChange = require("./postChange");
 
+const favoritePost      = require("./favoritePost");
+const favoriteUncheck   = require("./favoriteUncheck");
+
 const userHandlers = {
     login,
     register,
@@ -33,8 +36,14 @@ const postHandlers = {
     postChange,
 };
 
+const favoriteHandlers = {
+    favoritePost,
+    favoriteUncheck,
+}
+
 module.exports = {
     userHandlers,
     userMiddle,
     postHandlers,
+    favoriteHandlers
 };

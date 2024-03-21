@@ -13,6 +13,12 @@ export default function reducerPost ( state, type, payload ) {
                     },
                 })
             }
+            else{
+                return({
+                    ...state,
+                    allPosts : [ payload, ...state.allPosts ],                
+                })
+            }
         }
         else{
             return({
@@ -27,12 +33,22 @@ export default function reducerPost ( state, type, payload ) {
     }
 
     if ( type === ACTION.ALL_POST ){
+        const { allPostsData, favoritesData } = payload;
+        const ids = favoritesData.secondEntities.map( favorite => favorite.id );
+        
+        // console.log("allPostsData", allPostsData.length)
+        // console.log("favoritesData", favoritesData.secondEntities.length)
+
         return({
             ...state,
-            allPosts : [ ...payload ],
+            allPosts    : [ ...allPostsData ],
+            myFavorites : {
+                idPosts : [ ...ids ],
+                data    : [ ...favoritesData.secondEntities ],
+            },           
             filterPosts : {
                 ...state.filterPosts,
-                data : [ ...payload ]
+                data : [ ...allPostsData ]
             },
         })
     }
@@ -103,6 +119,18 @@ export default function reducerPost ( state, type, payload ) {
                 }
             })            
         }
+
+        if( filterQuery === "myFavorites" ){  
+            console.log(state.myFavorites.data.length);
+            return({
+                ...state,
+                filterPosts : {
+                    type : filterQuery,
+                    value: filterValue,
+                    data : [ ...state.myFavorites.data ]
+                }
+            })            
+        }
     }
 
     if ( type === ACTION.MODIFY_POST ){
@@ -126,11 +154,16 @@ export default function reducerPost ( state, type, payload ) {
 
     if ( type === ACTION.DELETE_POST ){
         const withoutPostDeletedAll = state.allPosts.filter(( post )=> post.id !== payload.id );
+        const withoutPostDeletedFav = state.myFavorites.data.filter(( post )=> post.id !== payload.id );
         const withoutPostDeleted = state.filterPosts.data.filter(( post )=> post.id !== payload.id );
         
         return({
             ...state,
-            allPosts : [ ...withoutPostDeletedAll ],
+            allPosts   : [ ...withoutPostDeletedAll ],
+            myFavorites: {
+                ...state.myFavorites,
+                data : [ ...withoutPostDeletedFav ],
+            },
             filterPosts: {
                 ...state.filterPosts,
                 data : [ ...withoutPostDeleted ]

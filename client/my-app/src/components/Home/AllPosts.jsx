@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 function AllPost ( props ) {
     const { allPosts, 
             userData,
+            favorites,
+            handleFavorite,
             handleDeletePost,
             handleModifyPost,
     } = props;
@@ -59,8 +61,11 @@ function AllPost ( props ) {
                      style     = {{ backgroundColor : `${ post.User.color }` }}
                 >
                     <h6> { post.User.fullName } </h6>
-                    <button className = { `material-symbols-outlined ${ styles.bttnCard }` }>
-                        favorite
+                    <button id        = { post.id }
+                            className = { `material-symbols-outlined ${ styles.bttnCard }` }
+                            onClick   = { handleFavorite }
+                    >
+                        { favorites.idPosts.includes( post.id ) ? "❤️" : "favorite" } 
                     </button>
                 </div>
             </div>

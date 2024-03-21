@@ -1,5 +1,6 @@
 import reducerUser from "./reducerUser";
 import reducerPost from "./reducerPost";
+import reducerFavorite from "./reducerFavorite";
 
 const stateInicial = {
     JWT_KEY : "",
@@ -10,7 +11,10 @@ const stateInicial = {
         value: "",
         data : [],
     },
-    myFavorites : [],
+    myFavorites : {
+        idPosts : [],
+        data    : [],
+    },
 };
 
 function reducer (state = stateInicial, action){
@@ -30,6 +34,14 @@ function reducer (state = stateInicial, action){
         
         if( ENTITY === "POST" ){
             newState = reducerPost( state, type, payload );
+            state    = { ...newState };
+
+            // window.alert( "Success : everything was done correctly" );
+            return({ ...state });
+        }
+
+        if( ENTITY === "FAVORITE" ){
+            newState = reducerFavorite( state, type, payload );
             state    = { ...newState };
 
             // window.alert( "Success : everything was done correctly" );

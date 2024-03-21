@@ -8,4 +8,8 @@ export const FILTER_POST = "FILTER_POST";
 export const MODIFY_POST = "MODIFY_POST";
 export const DELETE_POST = "DELETE_POST";
 
+export const ADD_FAVORITE    = "ADD_FAVORITE";
+export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
+export const POST_FAVORITE   = "POST_FAVORITE";
+
 export const REDUX_CLEAR= "REDUX_CLEAR";

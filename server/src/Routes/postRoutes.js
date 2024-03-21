@@ -3,7 +3,7 @@ const { postHandlers }  = require("../handlers/index");
 
 const postRoutes = Router();
 
-postRoutes.post("/",   postHandlers.postNew);
+postRoutes.post("/", postHandlers.postNew);
 
 postRoutes.get("/all", postHandlers.postsAll);
 

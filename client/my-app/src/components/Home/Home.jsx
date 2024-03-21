@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch }  from "react-redux";
-import { getAllPosts, createMyPost, updatePost, deletePost, filterPosts } from "../../redux/actionsPosts";
+import { modifyMyFavorite  } from "../../redux/actionsFavorite";
 import { modifyInformationUser } from "../../redux/actionsUser";
+import { getAllPosts, createMyPost, updatePost, deletePost } from "../../redux/actionsPosts";
 import styles  from "./home.module.css";
 import AllPost from "./AllPosts";
-import CreateModifyPost from "./CreateModifyPost";
 import Settings from "./Settings";
 import Searchbar  from "../Navbar/Searchbar";
+import CreateModifyPost from "./CreateModifyPost";
 
 function Home ( props ) {
     const { userData, pathname } = props;
@@ -15,7 +16,7 @@ function Home ( props ) {
     const navigate  = useNavigate();
     const dispatch  = useDispatch();    
     const token     = useSelector(( state )=> state.JWT_KEY);
-    const filterObj = useSelector(( state )=> state.filterPosts);
+    const favorites = useSelector(( state )=> state.myFavorites);
     const dataPosts = useSelector(( state )=> state.filterPosts.data);
     
     const [ currentDate, ]          = useState(new Date());
@@ -185,17 +186,18 @@ function Home ( props ) {
         })
     }
 
+    const handleFavorite = ( event ) => {
+        const { id } = event.target;
+
+        if (favorites.idPosts.includes( id ))
+         dispatch( modifyMyFavorite( "REMOVE_FAVORITE", id, token) );
+        if (!favorites.idPosts.includes( id ))
+         dispatch( modifyMyFavorite( "ADD_FAVORITE", id, token) );
+    }
+
     useEffect(()=>{
         dispatch( getAllPosts( token ) )
-        // dispatch( filterPosts({
-        //     filterQuery : filterObj.type, 
-        //     filterValue : filterObj.value,
-        // }))
     }, [ ])
-
-    // useEffect(()=>{
-    //     console.log(postModify)
-    // }, [ postModify ])
    
     return(
         <div className = { styles.homeGeneral }>
@@ -207,8 +209,10 @@ function Home ( props ) {
 
                 <Searchbar userData = { userData }/>
 
-                <AllPost   allPosts    = { dataPosts }
-                           userData    = { userData }
+                <AllPost   userData    = { userData }
+                           allPosts    = { dataPosts }
+                           favorites   = { favorites }
+                           handleFavorite   = { handleFavorite }
                            handleModifyPost = { handleModifyPost }
                            handleDeletePost = { handleDeletePost }
                 />

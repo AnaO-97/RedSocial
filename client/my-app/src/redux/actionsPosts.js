@@ -38,19 +38,22 @@ export function createMyPost( postData, token ) {
 
 export function getAllPosts( token ) {
     return ( async (dispatch) => { 
-        let allPosts = {};
+        let response = {};
 
         try {
-            allPosts = await axios.get(
+            response = await axios.get(
                 `${ REACT_APP_URL_SERVER }/post/all`,
                 {                
                     headers: { 'Authorization': `Bearer ${token}` }
                 }        
-            );                     
-                       
+            );            
+                
             dispatch({
                 type    : ACTION.ALL_POST,
-                payload : allPosts.data
+                payload : {
+                    allPostsData  : response.data.allPosts,
+                    favoritesData : response.data.allFavorites,
+                }
             })
 
         } catch (error) {
